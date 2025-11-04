@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import './IntroVideo.css';
 
 const IntroVideo = ({ onFinish }) => {
@@ -6,27 +6,33 @@ const IntroVideo = ({ onFinish }) => {
 
   useEffect(() => {
     const video = videoRef.current;
-    if (video) {
-      video.play();
-      video.addEventListener('ended', onFinish);
-    }
-    return () => {
-      if (video) video.removeEventListener('ended', onFinish);
+    video.play();
+
+    const handleEnded = () => {
+      // Aplica la clase que hace el fadeOut
+      video.classList.add('fade-out');
+      // Espera que termine la animación antes de desmontar el componente
+      setTimeout(() => {
+        onFinish();
+      }, 1000); // Debe coincidir con la duración del fade
     };
+
+    video.addEventListener('ended', handleEnded);
+    return () => video.removeEventListener('ended', handleEnded);
   }, [onFinish]);
 
   return (
-    <div className="intro-video">
+    <div className="intro-video-wrapper">
       <video
         ref={videoRef}
-        src={`${process.env.PUBLIC_URL}/lowfator_intro.mp4`}
-        type="video/mp4"
-        className="video-fullscreen"
+        src="/lowfator_intro.mp4"
+        className="intro-video"
         muted
-        autoPlay
+        playsInline
       />
     </div>
   );
 };
 
 export default IntroVideo;
+

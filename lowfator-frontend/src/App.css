@@ -1,3 +1,11 @@
+body, html, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: white;
+}
+
+
 body {
   background-color: #1a1a1a;
 
@@ -8,6 +16,7 @@ body {
 
 .App {
   text-align: center;
+  height: 100%;
 }
 
 .App-logo {
@@ -67,4 +76,10 @@ body {
 .fade-in {
   animation: fadeIn 2s ease-in-out;
 }
+
+h1 {
+  margin-top: 0;
+  padding-top: 2rem;
+}
+
 
