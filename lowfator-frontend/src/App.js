@@ -1,25 +1,28 @@
+import React, { useState } from 'react';
+import IntroVideo from './components/IntroVideo';
 import './App.css';
 
 function App() {
+  const [showIntro, setShowIntro] = useState(true);
+
+  const handleIntroEnd = () => {
+    setShowIntro(false);
+  };
+
   return (
-    <div
-      style={{
-        minHeight: '100vh',
-        backgroundColor: '#1a1a1a',
-        backgroundImage: `url(${process.env.PUBLIC_URL + '/pattern-randomized.svg'})`,
-        backgroundRepeat: 'repeat',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        color: 'white'
-      }}
-    >
-      <h1>LOWFATOR</h1>
+    <div className="App">
+      {showIntro ? (
+        <IntroVideo onFinish={handleIntroEnd} />
+      ) : (
+        <div className={`background-fondo ${!showIntro ? 'fade-in' : ''}`}>
+          <h1>LOWFATOR</h1>
+        </div>
+
+      )}
     </div>
   );
 }
 
 export default App;
+
 
