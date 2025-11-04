@@ -15,9 +15,11 @@ function App() {
         <IntroVideo onFinish={handleIntroEnd} />
       ) : (
         <div className={`background-fondo ${!showIntro ? 'fade-in' : ''}`}>
-          <h1>LOWFATOR</h1>
+          <img src='/fijo_in-out.gif'
+               alt="LowFator Logo Animation"
+               className='logo-gif'
+          />
         </div>
-
       )}
     </div>
   );
