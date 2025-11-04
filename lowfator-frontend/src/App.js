@@ -6,7 +6,7 @@ function App() {
       style={{
         minHeight: '100vh',
         backgroundColor: '#1a1a1a',
-        backgroundImage: `url(${process.env.PUBLIC_URL + '/grain-texture-grey.svg'})`,
+        backgroundImage: `url(${process.env.PUBLIC_URL + '/pattern-randomized.svg'})`,
         backgroundRepeat: 'repeat',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
