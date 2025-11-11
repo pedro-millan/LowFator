@@ -9,30 +9,34 @@ const IntroVideo = ({ onFinish }) => {
     video.play();
 
     const handleEnded = () => {
-      // Aplica la clase que hace el fadeOut
       video.classList.add('fade-out');
-      // Espera que termine la animación antes de desmontar el componente
       setTimeout(() => {
         onFinish();
-      }, 1000); // Debe coincidir con la duración del fade
+      }, 1000); // coincide con el fade-out
     };
 
     video.addEventListener('ended', handleEnded);
-    return () => video.removeEventListener('ended', handleEnded);
+
+    return () => {
+      video.removeEventListener('ended', handleEnded);
+    };
   }, [onFinish]);
 
   return (
     <div className="intro-video-wrapper">
-      <video
-        ref={videoRef}
-        src="/lowfator_intro.mp4"
-        className="intro-video"
-        muted
-        playsInline
-      />
+      <div className="video-scaler">
+        <video
+          ref={videoRef}
+          src="/lowfator_intro2.mp4"
+          className="intro-video"
+          muted
+          playsInline
+        />
+      </div>
     </div>
   );
 };
 
 export default IntroVideo;
+
 

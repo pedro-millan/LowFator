@@ -1,3 +1,6 @@
+
+/*Tablets*/
+@media (min-width: 481px) and (max-width: 768px){
 .intro-video-wrapper {
   position: fixed;
   top: 0;
@@ -16,11 +19,52 @@
   height: 100vh;
   object-fit: cover;
   z-index: 10;
-
-  /* Escalado para ocultar bordes */
-  transform: scale(1.05);
 }
 
 .intro-video.fade-out {
   opacity: 0;
 }
+
+.video-scaler{
+  max-width: 80px;
+  max-height: 80px;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+}
+
+/*Monitores*/
+@media (min-width: 769px){
+  .intro-video-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+    z-index: 9999;
+  }
+  
+  .intro-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: 10;
+  }
+  
+  .intro-video.fade-out {
+    opacity: 0;
+  }
+  
+  .video-scaler{
+    max-width: 80px;
+    max-height: 80px;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+  }
+  }
