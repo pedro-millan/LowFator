@@ -1,0 +1,34 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    padding-right: 10px;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content:right;
+    backdrop-filter: blur(3px);
+    font-size: small;
+    box-shadow: 0 1px 24px rgba(0, 0, 0, 0.3);
+  }
+
+  .nav-link {
+    margin-right: 3.5rem;
+    transition: opacity 0.2s ease;
+  }
+  
+  .nav-link:hover {
+    opacity: 0.6;
+  }
+  
+  .navbar img {
+    height: 40px;
+    margin-top: 26px;
+    width: 45px;
+    display: block;
+  }
+  
+  
+  
