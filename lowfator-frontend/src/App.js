@@ -38,15 +38,18 @@ function App() {
                   <IntroVideo onFinish={handleIntroEnd} />
                 ) : (
                   <div className={`background-fondo ${!showIntro ? 'fade-in' : ''}`}>
+
                     <img
                       src="/fijo_in-out.gif"
                       alt="LowFator Logo Animation"
                       className="logo-gif"
                     />
+                    
                     <div className="upload-container">
                       <label htmlFor="audio-upload" className="upload-button">
                         <img src="/upload-sample.png" alt="Upload Sample" className="upload-img" />
                       </label>
+                      
                       <input
                         id="audio-upload"
                         type="file"
@@ -54,6 +57,7 @@ function App() {
                         onChange={handleAudioUpload}
                         className="hidden-input"
                       />
+                      <h1 className='add'>ADD TEXTURES AND DIRT YOUR SOUNDS</h1>
                     </div>
                   </div>
                 )}

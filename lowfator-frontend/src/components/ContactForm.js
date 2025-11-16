@@ -5,7 +5,7 @@ import './ContactForm.css';
 const ContactForm = () => {
   return (
     <div className="background-fondo contact-wrapper">
-      <h2>Contacta conmigo</h2>
+      <h2>CONTACT</h2>
       <form className="contact-form">
         <label htmlFor="email">Tu email:</label>
         <input type="email" id="email" name="email" required />
@@ -13,7 +13,7 @@ const ContactForm = () => {
         <label htmlFor="message">Mensaje:</label>
         <textarea id="message" name="message" rows="4" required />
 
-        <button type="submit">Enviar</button>
+        <button type="submit"><img src='/send.png'></img></button>
       </form>
 
       <Link to="/" className="back-home">← Volver al inicio</Link>
