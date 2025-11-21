@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
 body, html, #root {
   margin: 0;
   padding: 0;
@@ -89,12 +91,14 @@ body {
 }
 
 .add{
-  color: rgb(222, 213, 173);
+  color: rgba(184, 172, 120, 0.67);
   margin-top: 28px;
   font-size: medium;
   font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   letter-spacing: 3px;
   animation: fadeIn 2s ease-in-out;
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 2px;
 }
 
 .upload-button {
