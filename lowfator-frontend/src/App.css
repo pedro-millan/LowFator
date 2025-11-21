@@ -62,10 +62,10 @@ body {
   flex-direction: column;
   align-items: center;
   background-image: url('./assets/pattern-randomized.svg');
-  background-size: cover;
+  background-size: 103vh;
   background-repeat: repeat;
   background-position: center;
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
   position: relative;
 }
@@ -94,8 +94,6 @@ body {
   color: rgba(184, 172, 120, 0.67);
   margin-top: 28px;
   font-size: medium;
-  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  letter-spacing: 3px;
   animation: fadeIn 2s ease-in-out;
   font-family: 'Bebas Neue', sans-serif;
   letter-spacing: 2px;
@@ -123,6 +121,117 @@ body {
   opacity: 0.7;
 }
 
+#centro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  max-width: 800px;
+  margin: 14px auto;
+  word-wrap: break-word;
+}
+
+.contenedor {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(4, auto);
+  gap: 10px;
+  width: 80%;
+  max-width: 1200px;
+  margin: auto;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.item img {
+  width: 60%;
+  height: auto;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.item:hover{
+transform: scale(1.1);
+}
+
+#bigger {
+  transform-origin: center;
+  transform: scale(1.35);
+}
+
+#bigger:hover{
+  transform: scale(1.1);
+}
+
+.footer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 0;
+  width: 100%;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.logo-gif2{
+  display: flex;
+  justify-items: center;
+  width: 30%;
+  height: auto;
+  margin-top: 10px;
+  margin-left: 3%;
+  animation: fadeIn 1s ease-in-out;
+}
+
+#footer_text{
+  display: flex;
+  color: rgba(183, 171, 65, 0.511);
+  font-size: 13px;
+  font-size: medium;
+  animation: fadeIn 2s ease-in-out;
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 1px;
+  transform: translateX(5px);
+  margin-top: -35px;
+}
+
+#footer_text2{
+  display: flex;
+  align-items: center;
+  color: rgb(163, 167, 132);
+  font-size: 13px;
+  justify-content: center;
+  margin-top: -5px;
+}
+
+.redes {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin: 20px auto;
+  transform: translateX(6px);
+  margin-top: -20px;
+}
+
+#logo1 {
+  transform: scale(-0.5);
+}
+
+.footer-logos {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.footer-logos:hover {
+  transform: scale(1.1);
+}
 }
 
 /*Tablets*/
