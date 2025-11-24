@@ -94,9 +94,15 @@ function App() {
                       className="logo-gif2"
                     />
                       <div className="redes">
-                        <img src="/insta.webp" alt="Instagram logo" className='footer-logos' id='logo1'/>
-                        <img src="/gh.webp" alt="GitHub logo" className='footer-logos'/>
-                        <img src="/li.webp" alt="LinkedIn logo" className='footer-logos'/>
+                        <a href=''>
+                          <img src="/insta.webp" alt="Instagram logo" className='footer-logos' id='logo1'/>
+                        </a>
+                        <a href='https://github.com/pedro-millan'>
+                          <img src="/gh.webp" alt="GitHub logo" className='footer-logos'/>
+                        </a>
+                        <a href='https://www.linkedin.com/in/pedro-pablo-millán-mompó-499a36377/'>
+                          <img src="/li.webp" alt="LinkedIn logo" className='footer-logos'/>
+                        </a>
                       </div>
                       <a href="https://www.privacypolicies.com/live/95e7cf62-f373-4c69-8806-00aee7611b2e" id="footer_text" target="_blank" rel="noopener noreferrer">
                         Política de Privacidad
