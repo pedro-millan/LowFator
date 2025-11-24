@@ -187,6 +187,7 @@ transform: scale(1.1);
   margin-top: 10px;
   margin-left: 3%;
   animation: fadeIn 1s ease-in-out;
+  transform: translateY(-4px);
 }
 
 #footer_text{
@@ -335,7 +336,7 @@ transform: scale(1.1);
   }
 }
 
-/*Monitores*/
+/*Monitors*/
 @media (min-width: 769px){
   body {
     background-color: #1a1a1a;
