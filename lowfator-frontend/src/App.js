@@ -8,15 +8,36 @@ import ContactForm from './components/ContactForm';
 
 
 
+function App() {
+  const [showIntro, setShowIntro] = useState(true);
+
+  const [selectedFilters, setSelectedFilters] = useState([]);
+
+const toggleFilter = (slug) => {
+  setSelectedFilters(prev =>
+    prev.includes(slug)
+      ? prev.filter(f => f !== slug)   // si está, lo quitamos
+      : [...prev, slug]                // si no está, lo añadimos
+  );
+};
+
+const applyFilter = (slug) => {
+  toggleFilter(slug);
+  console.log("Filtro marcado:", slug);
+  console.log("Actualmente seleccionados:", selectedFilters);
+};
+
+const previewFilter = (slug) => {
+  console.log("Preview:", slug);
+};
+
+
 const handleAudioUpload = (event) => {
   const file = event.target.files[0];
   if (file) {
     console.log('Audio subido:', file);
   }
 };
-
-function App() {
-  const [showIntro, setShowIntro] = useState(true);
 
   const handleIntroEnd = () => {
     setShowIntro(false);
@@ -61,29 +82,199 @@ function App() {
                     </div>
       
                     <div className="contenedor">
+
                       <div className="item">
                         <img src="/lofi.webp" alt="Lo-Fi filter" />
+                        <div className='botones'>
+                          <button onClick={() => previewFilter("lofi")} className='pre-listen'>
+                            Listen
+                          </button>
+                          <div className="apply-container">
+                            <label className="checkbox-label">
+                              <input
+                                type="checkbox"
+                                checked={selectedFilters.includes("lofi")}
+                                onChange={() => toggleFilter("lofi")}
+                                className="hidden-checkbox"
+                              />
+                              <span className="custom-checkbox"></span> 
+                            </label>
+
+                            <button className="apply" onClick={() => applyFilter("lofi")}>
+                              Apply
+                            </button>
+                          </div>
+                        </div>
                       </div>
+
                       <div className="item">
                         <img src="/8bit.webp" alt="8 Bit converter" />
+                        <div className='botones'>
+                          <button onClick={() => previewFilter("8bit")} className='pre-listen'>
+                            Listen
+                          </button>
+                          <div className="apply-container">
+                            <label className="checkbox-label">
+                              <input
+                                type="checkbox"
+                                checked={selectedFilters.includes("8bit")}
+                                onChange={() => toggleFilter("8bit")}
+                                className="hidden-checkbox"
+                              />
+                              <span className="custom-checkbox"></span> 
+                            </label>
+
+                            <button className="apply" onClick={() => applyFilter("8bit")}>
+                              Apply
+                            </button>
+                          </div>
+                        </div>
                       </div>
-                      <div className="item" id='bigger'>
+
+                      <div className="item">
                         <img src="/tapedistortion.webp" alt="Tape Distortion filter" />
+                        <div className='botones'>
+                          <button onClick={() => previewFilter("tape-distortion")} className='pre-listen'>
+                            Listen
+                          </button>
+                          <div className="apply-container">
+                            <label className="checkbox-label">
+                              <input
+                                type="checkbox"
+                                checked={selectedFilters.includes("tape-distortion")}
+                                onChange={() => toggleFilter("tape-distortion")}
+                                className="hidden-checkbox"
+                              />
+                              <span className="custom-checkbox"></span> 
+                            </label>
+
+                            <button className="apply" onClick={() => applyFilter("tape-distortion")}>
+                              Apply
+                            </button>
+                          </div>
+                        </div>
                       </div>
-                      <div className="item" id='bigger'>
+
+                      <div className="item" >
                         <img src="/compressor.webp" alt="Compressor" />
+                        <div className='botones'>
+                          <button onClick={() => previewFilter("compressor")} className='pre-listen'>
+                            Listen
+                          </button>
+                          <div className="apply-container">
+                            <label className="checkbox-label">
+                              <input
+                                type="checkbox"
+                                checked={selectedFilters.includes("compressor")}
+                                onChange={() => toggleFilter("compressor")}
+                                className="hidden-checkbox"
+                              />
+                              <span className="custom-checkbox"></span> 
+                            </label>
+
+                            <button className="apply" onClick={() => applyFilter("compressor")}>
+                              Apply
+                            </button>
+                          </div>
+                        </div>
                       </div>
+
                       <div className="item">
-                        <img src="/vinylcrackle.webp" alt="Vinyl Crackle filter" />
+                        <img src="/vinylcrackle.webp" alt="Vinyl Crackle filter" style={{height: '110%'}}/>
+                        <div className='botones' id='down'>
+                          <button onClick={() => previewFilter("vinyl-crackle")} className='pre-listen'>
+                            Listen
+                          </button>
+                          <div className="apply-container">
+                            <label className="checkbox-label">
+                              <input
+                                type="checkbox"
+                                checked={selectedFilters.includes("vinyl-crackle")}
+                                onChange={() => toggleFilter("vinyl-crackle")}
+                                className="hidden-checkbox"
+                              />
+                              <span className="custom-checkbox"></span> 
+                            </label>
+
+                            <button className="apply" onClick={() => applyFilter("vinyl-crackle")}>
+                              Apply
+                            </button>
+                          </div>
+                        </div>
                       </div>
+
                       <div className="item">
-                        <img src="/dirtyreverb.webp" alt="Dirty Reverb filter" />
+                        <div id=''>
+                          <img src="/dirtyreverb.webp" alt="Dirty Reverb filter" />
+                        </div>
+                        <div className='botones' id='down'>
+                          <button onClick={() => previewFilter("dirty-reverb")} className='pre-listen'>
+                            Listen
+                          </button>
+                          <div className="apply-container">
+                            <label className="checkbox-label">
+                              <input
+                                type="checkbox"
+                                checked={selectedFilters.includes("dirty-reverb")}
+                                onChange={() => toggleFilter("dirty-reverb")}
+                                className="hidden-checkbox"
+                              />
+                              <span className="custom-checkbox"></span> 
+                            </label>
+
+                            <button className="apply" onClick={() => applyFilter("dirty-reverb")}>
+                              Apply
+                            </button>
+                          </div>
+                        </div>
                       </div>
-                      <div className="item" id='bigger'>
+
+                      <div className="item">
                         <img src="/woobler.webp" alt="Wooble filter" />
+                        <div className='botones' id='down'>
+                          <button onClick={() => previewFilter("woobler")} className='pre-listen'>
+                            Listen
+                          </button>
+                          <div className="apply-container">
+                            <label className="checkbox-label">
+                              <input
+                                type="checkbox"
+                                checked={selectedFilters.includes("woobler")}
+                                onChange={() => toggleFilter("woobler")}
+                                className="hidden-checkbox"
+                              />
+                              <span className="custom-checkbox"></span> 
+                            </label>
+
+                            <button className="apply" onClick={() => applyFilter("woobler")}>
+                              Apply
+                            </button>
+                          </div>
+                        </div>
                       </div>
-                      <div className="item" id='bigger'>
+
+                      <div className="item">
                         <img src="/glitchdelay.webp" alt="Glitch Delay filter" />
+                        <div className='botones' id='down'>
+                          <button onClick={() => previewFilter("glitch-delay")} className='pre-listen'>
+                            Listen
+                          </button>
+                          <div className="apply-container">
+                            <label className="checkbox-label">
+                              <input
+                                type="checkbox"
+                                checked={selectedFilters.includes("glitch-delay")}
+                                onChange={() => toggleFilter("glitch-delay")}
+                                className="hidden-checkbox"
+                              />
+                              <span className="custom-checkbox"></span> 
+                            </label>
+
+                            <button className="apply" onClick={() => applyFilter("glitch-delay")}>
+                              Apply
+                            </button>
+                          </div>
+                        </div>
                       </div>
                     </div>
 
