@@ -97,12 +97,10 @@ const handleAudioUpload = (event) => {
                                 onChange={() => toggleFilter("lofi")}
                                 className="hidden-checkbox"
                               />
-                              <span className="custom-checkbox"></span> 
+                              <button className="apply-container" onClick={() => applyFilter("lofi")}>
+                                Apply
+                              </button>        
                             </label>
-
-                            <button className="apply" onClick={() => applyFilter("lofi")}>
-                              Apply
-                            </button>
                           </div>
                         </div>
                       </div>
@@ -121,12 +119,10 @@ const handleAudioUpload = (event) => {
                                 onChange={() => toggleFilter("8bit")}
                                 className="hidden-checkbox"
                               />
-                              <span className="custom-checkbox"></span> 
+                              <button className="apply-container" onClick={() => applyFilter("8bit")}>
+                                Apply
+                              </button>        
                             </label>
-
-                            <button className="apply" onClick={() => applyFilter("8bit")}>
-                              Apply
-                            </button>
                           </div>
                         </div>
                       </div>
@@ -141,16 +137,14 @@ const handleAudioUpload = (event) => {
                             <label className="checkbox-label">
                               <input
                                 type="checkbox"
-                                checked={selectedFilters.includes("tape-distortion")}
-                                onChange={() => toggleFilter("tape-distortion")}
+                                checked={selectedFilters.includes("apply-container")}
+                                onChange={() => toggleFilter("apply-container")}
                                 className="hidden-checkbox"
                               />
-                              <span className="custom-checkbox"></span> 
+                              <button className="apply-container" onClick={() => applyFilter("apply-container")}>
+                                Apply
+                              </button>        
                             </label>
-
-                            <button className="apply" onClick={() => applyFilter("tape-distortion")}>
-                              Apply
-                            </button>
                           </div>
                         </div>
                       </div>
@@ -169,12 +163,10 @@ const handleAudioUpload = (event) => {
                                 onChange={() => toggleFilter("compressor")}
                                 className="hidden-checkbox"
                               />
-                              <span className="custom-checkbox"></span> 
+                              <button className="apply-container" onClick={() => applyFilter("compressor")}>
+                                Apply
+                              </button>        
                             </label>
-
-                            <button className="apply" onClick={() => applyFilter("compressor")}>
-                              Apply
-                            </button>
                           </div>
                         </div>
                       </div>
@@ -193,12 +185,10 @@ const handleAudioUpload = (event) => {
                                 onChange={() => toggleFilter("vinyl-crackle")}
                                 className="hidden-checkbox"
                               />
-                              <span className="custom-checkbox"></span> 
+                              <button className="apply-container" onClick={() => applyFilter("vinyl-crackle")}>
+                                Apply
+                              </button>        
                             </label>
-
-                            <button className="apply" onClick={() => applyFilter("vinyl-crackle")}>
-                              Apply
-                            </button>
                           </div>
                         </div>
                       </div>
@@ -219,12 +209,10 @@ const handleAudioUpload = (event) => {
                                 onChange={() => toggleFilter("dirty-reverb")}
                                 className="hidden-checkbox"
                               />
-                              <span className="custom-checkbox"></span> 
+                              <button className="apply-container" onClick={() => applyFilter("dirty-reverb")}>
+                                Apply
+                              </button>        
                             </label>
-
-                            <button className="apply" onClick={() => applyFilter("dirty-reverb")}>
-                              Apply
-                            </button>
                           </div>
                         </div>
                       </div>
@@ -243,12 +231,10 @@ const handleAudioUpload = (event) => {
                                 onChange={() => toggleFilter("woobler")}
                                 className="hidden-checkbox"
                               />
-                              <span className="custom-checkbox"></span> 
+                              <button className="apply-container" onClick={() => applyFilter("woobler")}>
+                                Apply
+                              </button>        
                             </label>
-
-                            <button className="apply" onClick={() => applyFilter("woobler")}>
-                              Apply
-                            </button>
                           </div>
                         </div>
                       </div>
@@ -267,12 +253,10 @@ const handleAudioUpload = (event) => {
                                 onChange={() => toggleFilter("glitch-delay")}
                                 className="hidden-checkbox"
                               />
-                              <span className="custom-checkbox"></span> 
+                              <button className="apply-container" onClick={() => applyFilter("glitch-delay")}>
+                                Apply
+                              </button>        
                             </label>
-
-                            <button className="apply" onClick={() => applyFilter("glitch-delay")}>
-                              Apply
-                            </button>
                           </div>
                         </div>
                       </div>

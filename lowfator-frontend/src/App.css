@@ -136,27 +136,27 @@ body {
   margin-top: 7px;
 }
 
-.apply-container {
-  display: flex;
-  align-items: center;
-  gap: 0px;
-}
-
 .pre-listen {
   display: flex;
   font-family: 'Bebas Neue', sans-serif;
   color: #625d3b99;
 }
 
-.apply {
+.apply-container {
+  display: flex;
+  align-items: center;
+  gap: 0px;
   font-family: 'Bebas Neue', sans-serif;
   color: #625d3b99;
 }
 
 .checkbox-label {
-  display: flex;
+  display: inline-flex;
+  width: auto;
   align-items: center;
   cursor: pointer;
+  padding: 0;
+  margin: 0;
   transform: translateX(3px);
 }
 
@@ -167,14 +167,15 @@ body {
 .custom-checkbox {
   width: 18px;
   height: 18px;
-  border-radius: 4px;
-  border: 2px solid #fff;
+  border-radius: 9px;
+  border: 2px solid #ded77b67;
   margin-right: 6px;
   display: inline-block;
   position: relative;
+  pointer-events: none;
 }
 
-.hidden-checkbox:checked + .custom-checkbox {
+.hidden-checkbox:checked + .apply-container {
   background-color: #d4ca81;
   border-color: #ffe10099;
 }
