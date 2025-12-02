@@ -1,11 +1,12 @@
 from fastapi import FastAPI, File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 import shutil
 import os
+from app.routes import preview
 
 app = FastAPI()
 
-# Permitir peticiones desde el frontend
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -13,6 +14,13 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+TEMP_DIR = "app/temp"
+os.makedirs(TEMP_DIR, exist_ok=True)
+
+app.mount("/temp", StaticFiles(directory="app/temp"), name="temp")
+
+app.include_router(preview.router)
 
 UPLOAD_DIR = "uploaded_audios"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
