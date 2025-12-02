@@ -4,20 +4,24 @@ import './App.css';
 import Navbar from './components/Navbar';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ContactForm from './components/ContactForm';
+import Waveform from "./components/Waveform";
 
 
 
 
 function App() {
   const [showIntro, setShowIntro] = useState(true);
-
-  const [selectedFilters, setSelectedFilters] = useState([]);
+  const [selectedFilters, setSelectedFilters] = useState([]); 
+  const [filterPreviewVisible, setFilterPreviewVisible] = useState({}); 
+  const [filterPreviewUrls, setFilterPreviewUrls] = useState({});   
+  const [mixUrl, setMixUrl] = useState(null);
+  
 
 const toggleFilter = (slug) => {
   setSelectedFilters(prev =>
     prev.includes(slug)
-      ? prev.filter(f => f !== slug)   // si está, lo quitamos
-      : [...prev, slug]                // si no está, lo añadimos
+      ? prev.filter(f => f !== slug)
+      : [...prev, slug]                
   );
 };
 
@@ -27,9 +31,44 @@ const applyFilter = (slug) => {
   console.log("Actualmente seleccionados:", selectedFilters);
 };
 
-const previewFilter = (slug) => {
-  console.log("Preview:", slug);
+const [previewUrl, setPreviewUrl] = useState(null);
+console.log("Preview URLs:", filterPreviewUrls);
+console.log("Preview Visible:", filterPreviewVisible);
+
+
+const previewFilter = async (slug) => {
+  
+  if (filterPreviewVisible[slug]) {
+    setFilterPreviewVisible(prev => ({ ...prev, [slug]: false }));
+    return;
+  }
+
+  if (filterPreviewUrls[slug]) {
+    setFilterPreviewVisible(prev => ({ ...prev, [slug]: true }));
+    return;
+  }
+
+  try {
+    const res = await fetch(`http://localhost:8000/preview?filter=${slug}`);
+    const data = await res.json();
+    console.log("Preview URL recibida:", data.preview_filepath);
+
+
+    setFilterPreviewUrls(prev => ({
+      ...prev,
+      [slug]: data.preview_filepath,
+    }));
+
+    setFilterPreviewVisible(prev => ({
+      ...prev,
+      [slug]: true,
+    }));
+
+  } catch (error) {
+    console.error("Error obteniendo preview:", error);
+  }
 };
+
 
 
 const handleAudioUpload = (event) => {
@@ -103,6 +142,9 @@ const handleAudioUpload = (event) => {
                             </label>
                           </div>
                         </div>
+                        {filterPreviewVisible["lofi"] && filterPreviewUrls["lofi"] && (
+                          <Waveform audioUrl={filterPreviewUrls["lofi"]} />
+                        )}
                       </div>
 
                       <div className="item">
@@ -125,6 +167,9 @@ const handleAudioUpload = (event) => {
                             </label>
                           </div>
                         </div>
+                        {filterPreviewVisible["8bit"] && filterPreviewUrls["8bit"] && (
+                          <Waveform audioUrl={filterPreviewUrls["8bit"]} />
+                        )}
                       </div>
 
                       <div className="item">
@@ -147,6 +192,9 @@ const handleAudioUpload = (event) => {
                             </label>
                           </div>
                         </div>
+                        {filterPreviewVisible["tape-distortion"] && filterPreviewUrls["tape-distortion"] && (
+                          <Waveform audioUrl={filterPreviewUrls["tape-distortion"]} />
+                        )}
                       </div>
 
                       <div className="item" >
@@ -169,6 +217,9 @@ const handleAudioUpload = (event) => {
                             </label>
                           </div>
                         </div>
+                        {filterPreviewVisible["compressor"] && filterPreviewUrls["compressor"] && (
+                          <Waveform audioUrl={filterPreviewUrls["compressor"]} />
+                        )}
                       </div>
 
                       <div className="item">
@@ -191,6 +242,9 @@ const handleAudioUpload = (event) => {
                             </label>
                           </div>
                         </div>
+                        {filterPreviewVisible["vinyl-crackle"] && filterPreviewUrls["vinyl-crackle"] && (
+                          <Waveform audioUrl={filterPreviewUrls["vinyl-crackle"]} />
+                        )}
                       </div>
 
                       <div className="item">
@@ -215,6 +269,9 @@ const handleAudioUpload = (event) => {
                             </label>
                           </div>
                         </div>
+                        {filterPreviewVisible["dirty-reverb"] && filterPreviewUrls["dirty-reverb"] && (
+                          <Waveform audioUrl={filterPreviewUrls["dirty-reverb"]} />
+                        )}
                       </div>
 
                       <div className="item">
@@ -237,6 +294,9 @@ const handleAudioUpload = (event) => {
                             </label>
                           </div>
                         </div>
+                        {filterPreviewVisible["woobler"] && filterPreviewUrls["woobler"] && (
+                          <Waveform audioUrl={filterPreviewUrls["woobler"]} />
+                        )}
                       </div>
 
                       <div className="item">
@@ -260,6 +320,20 @@ const handleAudioUpload = (event) => {
                           </div>
                         </div>
                       </div>
+                      {filterPreviewVisible["glitch-delay"] && filterPreviewUrls["glitch-delay"] && (
+                          <Waveform audioUrl={filterPreviewUrls["glitch-delay"]} />
+                        )}
+                    </div>
+
+                    <Waveform audioUrl="http://localhost:8000/temp/test.wav" />
+
+
+                    <div className="current-mix-section">
+                      <h2>YOUR CURRENT MIX</h2>
+
+                      {mixUrl ? (<Waveform audioUrl={mixUrl} />) : (
+                        <p>No effects applied yet. Select filters and press Apply.</p>
+                      )}
                     </div>
 
                     <div className="footer">

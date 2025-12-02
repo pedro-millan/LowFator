@@ -91,7 +91,7 @@ body {
 .add{
   color: rgba(184, 172, 120, 0.67);
   margin-top: 28px;
-  font-size: medium;
+  font-size: large;
   animation: fadeIn 2s ease-in-out;
   font-family: 'Bebas Neue', sans-serif;
   letter-spacing: 2px;
@@ -218,6 +218,12 @@ body {
 
 .item:hover{
 transform: scale(1.4);
+}
+
+.current-mix-section {
+  font-family: 'Bebas Neue', sans-serif;
+  color: #97906b;
+  font-size: larger;
 }
 
 .footer{
