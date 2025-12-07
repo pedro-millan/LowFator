@@ -8,22 +8,21 @@ export default function Waveform({ audioUrl }) {
   useEffect(() => {
     if (!containerRef.current) return;
 
-    // Si ya existe una instancia previa, destrúyela limpiamente
+    // Limpiar instancia previa si existe
     if (wavesurferRef.current) {
       try {
-        wavesurferRef.current.unAll();   // elimina listeners sin abortar
+        wavesurferRef.current.unAll();
         wavesurferRef.current.destroy();
       } catch (err) {
         console.warn("WaveSurfer destroy error:", err);
       }
     }
 
-    // Crear instancia nueva
     const ws = WaveSurfer.create({
       container: containerRef.current,
       waveColor: "#ffe100",
       progressColor: "#ff9c00",
-      height: 80,
+      height: 40,          // << más pequeño
       barWidth: 2,
       responsive: true,
     });
@@ -39,20 +38,25 @@ export default function Waveform({ audioUrl }) {
         try {
           wavesurferRef.current.unAll();
           wavesurferRef.current.destroy();
-        } catch (err) {
-          /* evita el AbortError */
-        }
+        } catch (err) {}
       }
     };
   }, [audioUrl]);
 
   return (
-    <div style={{ marginTop: "10px" }}>
-      <div ref={containerRef}></div>
-      <button onClick={() => wavesurferRef.current?.playPause()}>
-        ▶️ Play / Pause
-      </button>
+    <div className="waveform-root">
+      <div ref={containerRef} className="waveform-canvas" />
+      <button
+  className="waveform-play"
+  onClick={(e) => {
+    e.stopPropagation();  
+    wavesurferRef.current?.playPause();
+  }}
+>
+  ▶
+</button>
     </div>
   );
 }
+
 

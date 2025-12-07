@@ -141,11 +141,13 @@ const handleAudioUpload = (event) => {
                               </button>        
                             </label>
                           </div>
-                        </div>
+                        </div>                       
                         {filterPreviewVisible["lofi"] && filterPreviewUrls["lofi"] && (
+                        <div className="waveform-overlay">
                           <Waveform audioUrl={filterPreviewUrls["lofi"]} />
+                        </div>
                         )}
-                      </div>
+                        </div>
 
                       <div className="item">
                         <img src="/8bit.webp" alt="8 Bit converter" />
@@ -168,7 +170,9 @@ const handleAudioUpload = (event) => {
                           </div>
                         </div>
                         {filterPreviewVisible["8bit"] && filterPreviewUrls["8bit"] && (
+                        <div className="waveform-overlay">
                           <Waveform audioUrl={filterPreviewUrls["8bit"]} />
+                        </div>
                         )}
                       </div>
 
@@ -193,7 +197,9 @@ const handleAudioUpload = (event) => {
                           </div>
                         </div>
                         {filterPreviewVisible["tape-distortion"] && filterPreviewUrls["tape-distortion"] && (
+                        <div className="waveform-overlay">
                           <Waveform audioUrl={filterPreviewUrls["tape-distortion"]} />
+                        </div>
                         )}
                       </div>
 
@@ -218,7 +224,9 @@ const handleAudioUpload = (event) => {
                           </div>
                         </div>
                         {filterPreviewVisible["compressor"] && filterPreviewUrls["compressor"] && (
+                        <div className="waveform-overlay">
                           <Waveform audioUrl={filterPreviewUrls["compressor"]} />
+                        </div>
                         )}
                       </div>
 
@@ -243,7 +251,9 @@ const handleAudioUpload = (event) => {
                           </div>
                         </div>
                         {filterPreviewVisible["vinyl-crackle"] && filterPreviewUrls["vinyl-crackle"] && (
+                        <div className="waveform-overlay">
                           <Waveform audioUrl={filterPreviewUrls["vinyl-crackle"]} />
+                        </div>
                         )}
                       </div>
 
@@ -270,7 +280,9 @@ const handleAudioUpload = (event) => {
                           </div>
                         </div>
                         {filterPreviewVisible["dirty-reverb"] && filterPreviewUrls["dirty-reverb"] && (
+                        <div className="waveform-overlay">
                           <Waveform audioUrl={filterPreviewUrls["dirty-reverb"]} />
+                        </div>
                         )}
                       </div>
 
@@ -295,7 +307,9 @@ const handleAudioUpload = (event) => {
                           </div>
                         </div>
                         {filterPreviewVisible["woobler"] && filterPreviewUrls["woobler"] && (
+                        <div className="waveform-overlay">
                           <Waveform audioUrl={filterPreviewUrls["woobler"]} />
+                        </div>
                         )}
                       </div>
 
@@ -321,18 +335,21 @@ const handleAudioUpload = (event) => {
                         </div>
                       </div>
                       {filterPreviewVisible["glitch-delay"] && filterPreviewUrls["glitch-delay"] && (
+                        <div className="waveform-overlay-2">
                           <Waveform audioUrl={filterPreviewUrls["glitch-delay"]} />
+                        </div>
                         )}
                     </div>
-
-                    <Waveform audioUrl="http://localhost:8000/temp/test.wav" />
 
 
                     <div className="current-mix-section">
                       <h2>YOUR CURRENT MIX</h2>
 
+                      <Waveform audioUrl="http://localhost:8000/temp/test.wav" />
+
                       {mixUrl ? (<Waveform audioUrl={mixUrl} />) : (
-                        <p>No effects applied yet. Select filters and press Apply.</p>
+                        
+                        <p id='message'>No effects applied yet. Select filters and press Apply.</p>
                       )}
                     </div>
 
