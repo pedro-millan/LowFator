@@ -17,19 +17,34 @@ function App() {
   const [mixUrl, setMixUrl] = useState(null);
   
 
-const toggleFilter = (slug) => {
-  setSelectedFilters(prev =>
-    prev.includes(slug)
-      ? prev.filter(f => f !== slug)
-      : [...prev, slug]                
-  );
-};
+  const toggleFilter = (slug) => {
+    let next;
+    setSelectedFilters(prev => {
+      next = prev.includes(slug) ? prev.filter(f => f !== slug) : [...prev, slug];
+      return next;
+    });
+    return next;
+  };
+  
 
-const applyFilter = (slug) => {
-  toggleFilter(slug);
-  console.log("Filtro marcado:", slug);
-  console.log("Actualmente seleccionados:", selectedFilters);
-};
+  const applyFilter = async (slug) => {
+    const nextFilters = toggleFilter(slug);
+  
+    try {
+      const res = await fetch("http://localhost:8000/mix", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ filters: nextFilters }),
+      });
+      const data = await res.json();
+      console.log("Mix:", data);
+  
+      if (data.mix_filepath) setMixUrl(data.mix_filepath);
+    } catch (err) {
+      console.error("Mix error:", err);
+    }
+  };
+  
 
 const [previewUrl, setPreviewUrl] = useState(null);
 console.log("Preview URLs:", filterPreviewUrls);
@@ -69,12 +84,25 @@ const previewFilter = async (slug) => {
   }
 };
 
+const [uploaded, setUploaded] = useState(false);
 
-
-const handleAudioUpload = (event) => {
+const handleAudioUpload = async (event) => {
   const file = event.target.files[0];
-  if (file) {
-    console.log('Audio subido:', file);
+  if (!file) return;
+
+  const formData = new FormData();
+  formData.append("file", file);
+
+  try {
+    const res = await fetch("http://localhost:8000/upload", {
+      method: "POST",
+      body: formData,
+    });
+    const data = await res.json();
+    console.log("Upload OK:", data);
+    setUploaded(true);
+  } catch (err) {
+    console.error("Upload error:", err);
   }
 };
 
@@ -343,6 +371,8 @@ const handleAudioUpload = (event) => {
 
 
                     <div className="current-mix-section">
+                      <br></br>
+                      <br></br>
                       <h2>YOUR CURRENT MIX</h2>
 
                       <Waveform audioUrl="http://localhost:8000/temp/test.wav" />
