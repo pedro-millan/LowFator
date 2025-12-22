@@ -91,10 +91,19 @@ body {
 .add{
   color: rgba(184, 172, 120, 0.67);
   margin-top: 28px;
-  font-size: large;
+  font-size:x-large;
   animation: fadeIn 2s ease-in-out;
   font-family: 'Bebas Neue', sans-serif;
   letter-spacing: 2px;
+}
+
+.add2{
+  color: rgba(133, 124, 85, 0.67);
+  margin-top: 28px;
+  font-size: large;
+  animation: fadeIn 2s ease-in-out;
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 1px;
 }
 
 .upload-button {
@@ -203,7 +212,6 @@ body {
   justify-content: center;
 }
 
-
 .item img {
   width: 60%;
   height: auto;
@@ -216,8 +224,6 @@ body {
   align-items: center;
   text-align: center;
 }
-
-
 
 .waveform-container {
   width: 100%;

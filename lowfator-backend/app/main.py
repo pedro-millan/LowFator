@@ -6,6 +6,7 @@ import os
 from app.routes import preview
 from app.routes import upload
 from app.routes import mix
+from app.routes import reset
 
 
 app = FastAPI()
@@ -23,6 +24,7 @@ TEMP_DIR = "app/temp"
 os.makedirs(TEMP_DIR, exist_ok=True)
 
 app.include_router(upload.router)
+app.include_router(reset.router)
 app.mount("/temp", StaticFiles(directory="app/temp"), name="temp")
 app.include_router(preview.router)
 app.mount("/uploaded_audios", StaticFiles(directory="app/uploaded_audios"), name="uploaded_audios")

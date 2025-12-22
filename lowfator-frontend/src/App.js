@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import IntroVideo from './components/IntroVideo';
 import './App.css';
 import Navbar from './components/Navbar';
@@ -7,14 +7,64 @@ import ContactForm from './components/ContactForm';
 import Waveform from "./components/Waveform";
 
 
-
-
 function App() {
   const [showIntro, setShowIntro] = useState(true);
   const [selectedFilters, setSelectedFilters] = useState([]); 
   const [filterPreviewVisible, setFilterPreviewVisible] = useState({}); 
   const [filterPreviewUrls, setFilterPreviewUrls] = useState({});   
   const [mixUrl, setMixUrl] = useState(null);
+  const [hasAudio, setHasAudio] = useState(false);
+  const [uploadedName, setUploadedName] = useState("");
+
+
+  useEffect(() => {
+    const resetSession = async () => {
+      try {
+        await fetch("http://localhost:8000/reset", { method: "POST" });
+      } catch (e) {
+        console.warn("Reset backend failed:", e);
+      }
+  
+      setSelectedFilters([]);
+      setFilterPreviewVisible({});
+      setFilterPreviewUrls({});
+      setMixUrl(null);
+      setHasAudio(false);
+    };
+  
+    resetSession();
+    setUploadedName("");
+  }, []);  
+
+
+  useEffect(() => {
+    const updateMix = async () => {
+      // emptying mix if any filter applied
+      if (selectedFilters.length === 0) {
+        setMixUrl(null);
+        return;
+      }
+  
+      try {
+        const res = await fetch("http://localhost:8000/mix", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ filters: selectedFilters }),
+        });
+  
+        const data = await res.json();
+  
+        if (data.mix_filepath) {
+          // anti-cache:
+          setMixUrl(`${data.mix_filepath}?t=${Date.now()}`);
+        }
+      } catch (err) {
+        console.error("Mix error:", err);
+      }
+    };
+  
+    updateMix();
+  }, [selectedFilters]);  
   
 
   const toggleFilter = (slug) => {
@@ -27,23 +77,14 @@ function App() {
   };
   
 
-  const applyFilter = async (slug) => {
-    const nextFilters = toggleFilter(slug);
-  
-    try {
-      const res = await fetch("http://localhost:8000/mix", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ filters: nextFilters }),
-      });
-      const data = await res.json();
-      console.log("Mix:", data);
-  
-      if (data.mix_filepath) setMixUrl(data.mix_filepath);
-    } catch (err) {
-      console.error("Mix error:", err);
-    }
+  const applyFilter = (slug) => {
+    toggleFilter(slug);
+    if (!hasAudio) {
+      console.warn("No audio uploaded yet");
+      return;
+    }    
   };
+  
   
 
 const [previewUrl, setPreviewUrl] = useState(null);
@@ -52,6 +93,11 @@ console.log("Preview Visible:", filterPreviewVisible);
 
 
 const previewFilter = async (slug) => {
+
+  if (!hasAudio) {
+    console.warn("No audio uploaded yet");
+    return;
+  }  
   
   if (filterPreviewVisible[slug]) {
     setFilterPreviewVisible(prev => ({ ...prev, [slug]: false }));
@@ -98,11 +144,20 @@ const handleAudioUpload = async (event) => {
       method: "POST",
       body: formData,
     });
+
+    if (!res.ok) throw new Error("Upload failed");
     const data = await res.json();
-    console.log("Upload OK:", data);
-    setUploaded(true);
+    setHasAudio(true);
+    setUploadedName(data.filename || file.name);
+    setSelectedFilters([]);
+    setFilterPreviewVisible({});
+    setFilterPreviewUrls({});
+    setMixUrl(null);
+    console.log("✅ Audio subido");
   } catch (err) {
     console.error("Upload error:", err);
+    setHasAudio(false);
+    setUploadedName("");
   }
 };
 
@@ -145,6 +200,12 @@ const handleAudioUpload = async (event) => {
                         onChange={handleAudioUpload}
                         className="hidden-input"
                       />
+                      {hasAudio ? (
+                        <p className="add2">LOADED: {uploadedName}</p>
+                      ) : (
+                         <p className="add2">NO SAMPLE LOADED</p>
+                      )}
+
                       <h1 className='add'>ADD TEXTURES AND DIRT YOUR SOUNDS</h1>
                     </div>
       
@@ -374,8 +435,6 @@ const handleAudioUpload = async (event) => {
                       <br></br>
                       <br></br>
                       <h2>YOUR CURRENT MIX</h2>
-
-                      <Waveform audioUrl="http://localhost:8000/temp/test.wav" />
 
                       {mixUrl ? (<Waveform audioUrl={mixUrl} />) : (
                         
