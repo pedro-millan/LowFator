@@ -1,62 +1,59 @@
 import React, { useEffect, useRef } from "react";
 import WaveSurfer from "wavesurfer.js";
 
-export default function Waveform({ audioUrl }) {
+export default function Waveform({ audioUrl, playerId, activePlayerId, onPlayRequest }) {
   const containerRef = useRef(null);
   const wavesurferRef = useRef(null);
 
   useEffect(() => {
     if (!containerRef.current) return;
 
-    // Limpiar instancia previa si existe
-    if (wavesurferRef.current) {
-      try {
-        wavesurferRef.current.unAll();
-        wavesurferRef.current.destroy();
-      } catch (err) {
-        console.warn("WaveSurfer destroy error:", err);
-      }
-    }
-
-    const ws = WaveSurfer.create({
+    wavesurferRef.current = WaveSurfer.create({
       container: containerRef.current,
       waveColor: "#ffe100",
       progressColor: "#ff9c00",
-      height: 40,          // << más pequeño
+      height: 60,
       barWidth: 2,
       responsive: true,
     });
 
-    wavesurferRef.current = ws;
-
     if (audioUrl) {
-      ws.load(audioUrl);
+      wavesurferRef.current.load(audioUrl);
     }
 
     return () => {
-      if (wavesurferRef.current) {
-        try {
-          wavesurferRef.current.unAll();
-          wavesurferRef.current.destroy();
-        } catch (err) {}
-      }
+      wavesurferRef.current?.destroy();
     };
   }, [audioUrl]);
 
+  // ✅ Si otro player pasa a ser el activo, yo me paro
+  useEffect(() => {
+    if (!wavesurferRef.current) return;
+    if (activePlayerId && activePlayerId !== playerId) {
+      wavesurferRef.current.pause();
+      wavesurferRef.current.seekTo(0);
+    }
+  }, [activePlayerId, playerId]);
+
+  const togglePlay = () => {
+    if (!wavesurferRef.current) return;
+
+    // Aviso al padre para que pare el resto
+    onPlayRequest?.(playerId);
+
+    wavesurferRef.current.playPause();
+  };
+
   return (
     <div className="waveform-root">
-      <div ref={containerRef} className="waveform-canvas" />
-      <button
-  className="waveform-play"
-  onClick={(e) => {
-    e.stopPropagation();  
-    wavesurferRef.current?.playPause();
-  }}
->
-  ▶
-</button>
+      <div ref={containerRef} className="waveform-canvas"></div>
+
+      <button className="waveform-play" onClick={togglePlay}>
+      ▶ ❚❚
+      </button>
     </div>
   );
 }
+
 
 

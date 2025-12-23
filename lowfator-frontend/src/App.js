@@ -15,6 +15,14 @@ function App() {
   const [mixUrl, setMixUrl] = useState(null);
   const [hasAudio, setHasAudio] = useState(false);
   const [uploadedName, setUploadedName] = useState("");
+  const [isMixLoading, setIsMixLoading] = useState(false);
+  const [activePlayerId, setActivePlayerId] = useState(null);
+  const [previewLoading, setPreviewLoading] = useState({}); 
+
+  
+  const handlePlayRequest = (playerId) => {
+    setActivePlayerId(playerId);
+  };  
 
 
   useEffect(() => {
@@ -24,7 +32,7 @@ function App() {
       } catch (e) {
         console.warn("Reset backend failed:", e);
       }
-  
+      setPreviewLoading({});
       setSelectedFilters([]);
       setFilterPreviewVisible({});
       setFilterPreviewUrls({});
@@ -40,10 +48,13 @@ function App() {
   useEffect(() => {
     const updateMix = async () => {
       // emptying mix if any filter applied
-      if (selectedFilters.length === 0) {
+      if (!hasAudio || selectedFilters.length === 0) {
         setMixUrl(null);
+        setIsMixLoading(false);
         return;
       }
+
+      setIsMixLoading(true);
   
       try {
         const res = await fetch("http://localhost:8000/mix", {
@@ -60,11 +71,13 @@ function App() {
         }
       } catch (err) {
         console.error("Mix error:", err);
+      } finally {
+        setIsMixLoading(false);
       }
     };
   
     updateMix();
-  }, [selectedFilters]);  
+  }, [selectedFilters, hasAudio]);  
   
 
   const toggleFilter = (slug) => {
@@ -77,12 +90,12 @@ function App() {
   };
   
 
-  const applyFilter = (slug) => {
-    toggleFilter(slug);
+  const applyFilter = (slug) => { 
     if (!hasAudio) {
       console.warn("No audio uploaded yet");
       return;
     }    
+    toggleFilter(slug);
   };
   
   
@@ -93,7 +106,6 @@ console.log("Preview Visible:", filterPreviewVisible);
 
 
 const previewFilter = async (slug) => {
-
   if (!hasAudio) {
     console.warn("No audio uploaded yet");
     return;
@@ -108,6 +120,8 @@ const previewFilter = async (slug) => {
     setFilterPreviewVisible(prev => ({ ...prev, [slug]: true }));
     return;
   }
+
+  setPreviewLoading(p => ({ ...p, [slug]: true }));
 
   try {
     const res = await fetch(`http://localhost:8000/preview?filter=${slug}`);
@@ -127,6 +141,8 @@ const previewFilter = async (slug) => {
 
   } catch (error) {
     console.error("Error obteniendo preview:", error);
+  } finally {
+    setPreviewLoading(p => ({ ...p, [slug]: false }));
   }
 };
 
@@ -176,7 +192,7 @@ const handleAudioUpload = async (event) => {
             path="/"
             element={
               <>
-                {/* Solo muestra la intro si NO es móvil */}
+                {/* Showing INTRO if viewport is not mobile screen */}
                 {showIntro && !isMobile ? (
                   <IntroVideo onFinish={handleIntroEnd} />
                 ) : (
@@ -231,9 +247,20 @@ const handleAudioUpload = async (event) => {
                             </label>
                           </div>
                         </div>                       
+                        {previewLoading["lofi"] && (
+                          <div className="mix-loading">
+                            <div className="spinner"></div>
+                            <span>Processing...</span>
+                          </div>
+                        )}
                         {filterPreviewVisible["lofi"] && filterPreviewUrls["lofi"] && (
                         <div className="waveform-overlay">
-                          <Waveform audioUrl={filterPreviewUrls["lofi"]} />
+                          <Waveform
+                            audioUrl={filterPreviewUrls["lofi"]}
+                            playerId="preview-lofi"
+                            activePlayerId={activePlayerId}
+                            onPlayRequest={handlePlayRequest}
+                          />
                         </div>
                         )}
                         </div>
@@ -258,9 +285,20 @@ const handleAudioUpload = async (event) => {
                             </label>
                           </div>
                         </div>
+                        {previewLoading["8bit"] && (
+                          <div className="mix-loading">
+                            <div className="spinner"></div>
+                            <span>Processing...</span>
+                          </div>
+                        )}
                         {filterPreviewVisible["8bit"] && filterPreviewUrls["8bit"] && (
                         <div className="waveform-overlay">
-                          <Waveform audioUrl={filterPreviewUrls["8bit"]} />
+                          <Waveform
+                            audioUrl={filterPreviewUrls["8bit"]}
+                            playerId="preview-8bit"
+                            activePlayerId={activePlayerId}
+                            onPlayRequest={handlePlayRequest}
+                          />
                         </div>
                         )}
                       </div>
@@ -285,9 +323,20 @@ const handleAudioUpload = async (event) => {
                             </label>
                           </div>
                         </div>
+                        {previewLoading["tape-distortion"] && (
+                          <div className="mix-loading">
+                            <div className="spinner"></div>
+                            <span>Processing...</span>
+                          </div>
+                        )}
                         {filterPreviewVisible["tape-distortion"] && filterPreviewUrls["tape-distortion"] && (
                         <div className="waveform-overlay">
-                          <Waveform audioUrl={filterPreviewUrls["tape-distortion"]} />
+                          <Waveform
+                            audioUrl={filterPreviewUrls["tape-distortion"]}
+                            playerId="preview-tape-distortion"
+                            activePlayerId={activePlayerId}
+                            onPlayRequest={handlePlayRequest}
+                          />
                         </div>
                         )}
                       </div>
@@ -312,9 +361,20 @@ const handleAudioUpload = async (event) => {
                             </label>
                           </div>
                         </div>
+                        {previewLoading["compressor"] && (
+                          <div className="mix-loading">
+                            <div className="spinner"></div>
+                            <span>Processing...</span>
+                          </div>
+                        )}
                         {filterPreviewVisible["compressor"] && filterPreviewUrls["compressor"] && (
                         <div className="waveform-overlay">
-                          <Waveform audioUrl={filterPreviewUrls["compressor"]} />
+                          <Waveform
+                            audioUrl={filterPreviewUrls["compressor"]}
+                            playerId="preview-compressor"
+                            activePlayerId={activePlayerId}
+                            onPlayRequest={handlePlayRequest}
+                          />
                         </div>
                         )}
                       </div>
@@ -339,9 +399,20 @@ const handleAudioUpload = async (event) => {
                             </label>
                           </div>
                         </div>
+                        {previewLoading["vinyl-crackle"] && (
+                          <div className="mix-loading">
+                            <div className="spinner"></div>
+                            <span>Processing...</span>
+                          </div>
+                        )}
                         {filterPreviewVisible["vinyl-crackle"] && filterPreviewUrls["vinyl-crackle"] && (
                         <div className="waveform-overlay">
-                          <Waveform audioUrl={filterPreviewUrls["vinyl-crackle"]} />
+                          <Waveform
+                            audioUrl={filterPreviewUrls["vinyl-crackle"]}
+                            playerId="preview-vinyl-crackle"
+                            activePlayerId={activePlayerId}
+                            onPlayRequest={handlePlayRequest}
+                          />
                         </div>
                         )}
                       </div>
@@ -368,9 +439,20 @@ const handleAudioUpload = async (event) => {
                             </label>
                           </div>
                         </div>
+                        {previewLoading["dirty-reverb"] && (
+                          <div className="mix-loading">
+                            <div className="spinner"></div>
+                            <span>Processing...</span>
+                          </div>
+                        )}
                         {filterPreviewVisible["dirty-reverb"] && filterPreviewUrls["dirty-reverb"] && (
                         <div className="waveform-overlay">
-                          <Waveform audioUrl={filterPreviewUrls["dirty-reverb"]} />
+                          <Waveform
+                            audioUrl={filterPreviewUrls["dirty-reverb"]}
+                            playerId="preview-dirty-reverb"
+                            activePlayerId={activePlayerId}
+                            onPlayRequest={handlePlayRequest}
+                          />
                         </div>
                         )}
                       </div>
@@ -395,9 +477,20 @@ const handleAudioUpload = async (event) => {
                             </label>
                           </div>
                         </div>
+                        {previewLoading["woobler"] && (
+                          <div className="mix-loading">
+                            <div className="spinner"></div>
+                            <span>Processing...</span>
+                          </div>
+                        )}
                         {filterPreviewVisible["woobler"] && filterPreviewUrls["woobler"] && (
                         <div className="waveform-overlay">
-                          <Waveform audioUrl={filterPreviewUrls["woobler"]} />
+                          <Waveform
+                            audioUrl={filterPreviewUrls["woobler"]}
+                            playerId="preview-woobler"
+                            activePlayerId={activePlayerId}
+                            onPlayRequest={handlePlayRequest}
+                          />
                         </div>
                         )}
                       </div>
@@ -422,13 +515,25 @@ const handleAudioUpload = async (event) => {
                             </label>
                           </div>
                         </div>
-                      </div>
-                      {filterPreviewVisible["glitch-delay"] && filterPreviewUrls["glitch-delay"] && (
-                        <div className="waveform-overlay-2">
-                          <Waveform audioUrl={filterPreviewUrls["glitch-delay"]} />
-                        </div>
+                      
+                      {previewLoading["glitch-delay"] && (
+                          <div className="mix-loading">
+                            <div className="spinner"></div>
+                            <span>Processing...</span>
+                          </div>
+                        )}
+                        {filterPreviewVisible["glitch-delay"] && filterPreviewUrls["glitch-delay"] && (
+                          <div className="waveform-overlay">
+                            <Waveform
+                              audioUrl={filterPreviewUrls["glitch-delay"]}
+                              playerId="preview-glitch-delay"
+                              activePlayerId={activePlayerId}
+                              onPlayRequest={handlePlayRequest}
+                            />
+                          </div>
                         )}
                     </div>
+                  </div>
 
 
                     <div className="current-mix-section">
@@ -436,10 +541,24 @@ const handleAudioUpload = async (event) => {
                       <br></br>
                       <h2>YOUR CURRENT MIX</h2>
 
-                      {mixUrl ? (<Waveform audioUrl={mixUrl} />) : (
-                        
-                        <p id='message'>No effects applied yet. Select filters and press Apply.</p>
+                      {isMixLoading && (
+                        <div className="mix-loading2">
+                          <div className="spinner"></div>
+                          <span>Processing...</span>
+                        </div>
                       )}
+
+                      {!isMixLoading && mixUrl ? (
+                        <Waveform
+                          audioUrl={mixUrl}
+                          playerId="current-mix"
+                          activePlayerId={activePlayerId}
+                          onPlayRequest={handlePlayRequest}
+                        />
+
+                      ) : !isMixLoading ? (
+                        <p>No effects applied yet. Select filters and press Apply.</p>
+                      ) : null}
                     </div>
 
                     <div className="footer">

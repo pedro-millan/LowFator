@@ -139,6 +139,7 @@ body {
 }
 
 
+
 #smaller {
   width: 140px;
   height: 140px;
@@ -277,7 +278,7 @@ body {
   margin-top: 133.6%;
   margin-left: 48%;
   width: 90%;
-  max-width: 170px;
+  max-width: 140px;
   background: rgba(227, 205, 80, 0.242);
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0,0,0,0.6);
@@ -294,6 +295,48 @@ body {
 #message {
   margin-top: 30px;
   color: #afad3ac4;
+}
+
+.mix-loading{
+  position: absolute;
+  display: flex;
+  gap: 10%;
+  justify-content: center;
+  align-items: center;
+  margin: 10% 0;
+  font-family: 'Bebas Neue', sans-serif;
+  color: rgba(184, 172, 120, 0.85);
+  margin-top: 70%;
+  margin-left: 2px;
+}
+
+.mix-loading2{
+  position: absolute;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0;
+  font-family: 'Bebas Neue', sans-serif;
+  color: rgba(184, 172, 120, 0.85);
+  margin-top: 20px;
+  margin-left: 27px;
+}
+
+
+
+.spinner{
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(184, 172, 120, 0.25);
+  border-top-color: rgba(184, 172, 120, 0.85);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  
+}
+
+@keyframes spin{
+  to { transform: rotate(360deg); }
 }
 
 .footer{
