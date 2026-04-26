@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import IntroVideo from './components/IntroVideo';
 import './App.css';
 import Navbar from './components/Navbar';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -599,14 +598,16 @@ const handleAudioUpload = async (event) => {
                         <p>No effects applied yet. Select filters and press Apply.</p>
                       ) : null}
                       <div className="download-controls">
-                        <select
-                        value={downloadFormat}
-                        onChange={(e) => setDownloadFormat(e.target.value)}
-                        className="download-select"
-                        >
-                        <option value="wav">WAV</option>
-                        <option value="mp3">MP3</option>
-                        </select>
+                      <div className="format-toggle">
+                        <button
+                          className={`format-btn ${downloadFormat === 'wav' ? 'active' : ''}`}
+                          onClick={() => setDownloadFormat('wav')}
+                        >WAV</button>
+                        <button
+                          className={`format-btn ${downloadFormat === 'mp3' ? 'active' : ''}`}
+                          onClick={() => setDownloadFormat('mp3')}
+                        >MP3</button>
+                      </div>
 
                         <button
                         onClick={handleDownloadMix}

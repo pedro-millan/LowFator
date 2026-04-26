@@ -427,7 +427,29 @@ body, html, #root {
     border: 1px solid rgba(184, 172, 120, 0.5);
     background: rgba(227, 205, 80, 0.12);
     color: #97906b;
-    margin-top: 20px;
+  }
+
+  .format-toggle {
+    display: flex;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid rgba(184, 172, 120, 0.5);
+  }
+  
+  .format-btn {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 16px; /* o 2rem en tablet/desktop */
+    padding: 6px 12px;
+    background: rgba(227, 205, 80, 0.08);
+    color: #97906b;
+    border: none;
+    cursor: pointer;
+    touch-action: manipulation;
+  }
+  
+  .format-btn.active {
+    background: rgba(202, 184, 80, 0.55);
+    color: #4b4e20;
   }
   
   .download-button{
@@ -439,7 +461,6 @@ body, html, #root {
     background: rgba(202, 184, 80, 0.66);
     color: #4b4e20;
     cursor: pointer;
-    margin-top: 20px;
   }
   
   .download-button:disabled{
@@ -870,7 +891,29 @@ body {
   border: 1px solid rgba(184, 172, 120, 0.5);
   background: rgba(227, 205, 80, 0.12);
   color: #97906b;
-  margin-top: 20px;
+}
+
+.format-toggle {
+  display: flex;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid rgba(184, 172, 120, 0.5);
+}
+
+.format-btn {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 16px; /* o 2rem en tablet/desktop */
+  padding: 6px 12px;
+  background: rgba(227, 205, 80, 0.08);
+  color: #97906b;
+  border: none;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.format-btn.active {
+  background: rgba(202, 184, 80, 0.55);
+  color: #4b4e20;
 }
 
 .download-button{
@@ -882,7 +925,7 @@ body {
   background: rgba(202, 184, 80, 0.66);
   color: #4b4e20;
   cursor: pointer;
-  margin-top: 20px;
+  
 }
 
 .download-button:disabled{
@@ -1183,6 +1226,30 @@ body {
     color: #97906b;
     margin-top: 14px;
     width: 90px;
+  }
+
+  .format-toggle {
+    display: flex;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid rgba(184, 172, 120, 0.5);
+    transform: translateY(7px);
+  }
+  
+  .format-btn {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    padding: 6px 12px;
+    background: rgba(227, 205, 80, 0.08);
+    color: #97906b;
+    border: none;
+    cursor: pointer;
+    touch-action: manipulation;
+  }
+  
+  .format-btn.active {
+    background: rgba(202, 184, 80, 0.55);
+    color: #4b4e20;
   }
 
   .download-button{
@@ -1559,6 +1626,30 @@ body {
     color: #97906b;
     margin-top: 14px;
     width: 90px;
+  }
+
+  .format-toggle {
+    display: flex;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid rgba(184, 172, 120, 0.5);
+    transform: translateY(7px);
+  }
+  
+  .format-btn {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    padding: 6px 12px;
+    background: rgba(227, 205, 80, 0.08);
+    color: #97906b;
+    border: none;
+    cursor: pointer;
+    touch-action: manipulation;
+  }
+  
+  .format-btn.active {
+    background: rgba(202, 184, 80, 0.55);
+    color: #4b4e20;
   }
 
   .download-button{
