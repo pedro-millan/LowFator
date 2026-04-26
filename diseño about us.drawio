@@ -1,0 +1,49 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.7.17 Chrome/128.0.6613.36 Electron/32.0.1 Safari/537.36" version="24.7.17">
+  <diagram name="Página-1" id="oxqISjcvOHwTRr-mb3EP">
+    <mxGraphModel dx="896" dy="1117" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="gz1SkdTJ1reAsqUgY3KR-1" value="&lt;font style=&quot;font-size: 31px;&quot;&gt;NAV BAR&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="9" width="810" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="gz1SkdTJ1reAsqUgY3KR-53" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;RÓTULO ANIMADO CON TÍTULO DE LA WEB&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="89" y="990" width="650" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="gz1SkdTJ1reAsqUgY3KR-54" value="BOTÓN CON ENLACE A RED SOCIAL" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="200" y="1030" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="gz1SkdTJ1reAsqUgY3KR-55" value="BOTÓN CON ENLACE A RED SOCIAL" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="364" y="1030" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="gz1SkdTJ1reAsqUgY3KR-56" value="BOTÓN CON ENLACE A RED SOCIAL" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="530" y="1030" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="gz1SkdTJ1reAsqUgY3KR-57" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;ENLACE A POLÍTICA DE PRIVACIDAD&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="79" y="1109" width="660" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="gz1SkdTJ1reAsqUgY3KR-58" value="&lt;span style=&quot;font-size: 18px;&quot;&gt;COPYRIGHT - AÑO - NOMBRE - ALL RIGHTS RESERVED&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="12" y="1139" width="800" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="gz1SkdTJ1reAsqUgY3KR-71" value="&lt;span style=&quot;font-size: 20px;&quot;&gt;TEXTO DESCRIPTIVO&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="100" y="160" width="630" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="gz1SkdTJ1reAsqUgY3KR-72" value="&lt;span style=&quot;font-size: 20px;&quot;&gt;TEXTO DESCRIPTIVO&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="40" y="600" width="440" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="gz1SkdTJ1reAsqUgY3KR-73" value="&lt;span style=&quot;font-size: 28px;&quot;&gt;ENLACE &quot;VOLVER AL INICIO&quot;&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="89" y="900" width="650" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="gz1SkdTJ1reAsqUgY3KR-74" value="&lt;span style=&quot;font-size: 20px;&quot;&gt;TEXTO DESCRIPTIVO&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="340" y="300" width="440" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="gz1SkdTJ1reAsqUgY3KR-75" value="&lt;span style=&quot;font-size: 20px;&quot;&gt;IMAGEN&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="40" y="300" width="260" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="gz1SkdTJ1reAsqUgY3KR-76" value="&lt;span style=&quot;font-size: 20px;&quot;&gt;IMAGEN&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="520" y="600" width="260" height="240" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
